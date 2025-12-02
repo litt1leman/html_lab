@@ -2,47 +2,154 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Мир котиков - Главная</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Макет</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   
-    <div>
-        <h1>Мир котиков</h1>
-        <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="cat-details.html">О породах</a></li>
-            <li><a href="data.html">Статистика</a></li>
-        </ul>
+
+<header id="menu">
+    <a href="/Users/mccally/Desktop/lab_1_html/index.html" class="active">Главная</a>
+    <a href="/Users/mccally/Desktop/lab_1_html/data.html">Статистика</a>
+    <a href="/Users/mccally/Desktop/lab_1_html/data.html">О породах</a>
+    <a href="#">Контакты</a>
+</header>
+
+<!-- ВЕРХНИЕ БЛОКИ -->
+<section class="row clearfix">
+    <div class="block small">
+        <img src="/Users/mccally/Desktop/lab_1_html/2.jpg" alt="">
     </div>
 
-    
-    <div>
-        <h2>Галерея котиков</h2>
-        <a href="cat-details.html#british"><img src="cat1.jpg" alt="Кот 1" width="200"></a>
-        <a href="cat-details.html#sphinx"><img src="cat2.jpg" alt="Кот 2" width="200"></a>
-        <a href="cat-details.html#siamese"><img src="cat3.jpg" alt="Кот 3" width="200"></a>
+    <div class="block big">
+        <img src="/Users/mccally/Desktop/lab_1_html/12.jpg" alt="">
+    </div>
+</section>
+
+<section class="row reverse clearfix">
+    <div class="block big">
+        <img src="/Users/mccally/Desktop/lab_1_html/11.jpg" alt="">
     </div>
 
-   
-    <div>
-        <h2>О котиках</h2>
-        
-        <div>
-            <h3>Почему котики милые?</h3>
-            <img src="img1.jpg" alt="Котик" width="150" align="left">
-            <p>Текст о котиках...</p>
-            <ul>
-                <li>Факт 1</li>
-                <li>Факт 2</li>
-            </ul>
-            <details>
-                <summary>Подробнее</summary>
-                <p>Дополнительная информация</p>
-            </details>
+    <div class="block small">
+        <img src="/Users/mccally/Desktop/lab_1_html/4.jpg" alt="">
+    </div>
+</section>
+
+<!-- КРУГЛЫЕ ИЗОБРАЖЕНИЯ -->
+<section id="round-features" class="clearfix">
+
+    <div class="feature">
+        <div class="round">
+            <img src="/Users/mccally/Desktop/lab_1_html/7.jpg" alt="">
         </div>
+        <h4>Характер кошек</h4>
+        <p>Кошки обладают независимым, но в то же время ласковым характером. Они быстро привязываются к людям и способны чувствовать настроение хозяина.</p>
     </div>
-    <div>
-        <p>Группа: Б9123-02.03.03тп | Косенко Е.О.</p>
+
+    <div class="feature">
+        <div class="round">
+            <img src="/Users/mccally/Desktop/lab_1_html/8.jpg" alt="">
+        </div>
+        <h4>Уход и содержание</h4>
+        <p>Большинство кошек не требует сложного ухода: регулярное кормление, чистая вода, когтеточка и внимание позволяют им чувствовать себя отлично.</p>
     </div>
+
+    <div class="feature">
+        <div class="round">
+            <img src="/Users/mccally/Desktop/lab_1_html/6.jpg" alt="">
+        </div>
+        <h4>Питание</h4>
+        <p>Сбалансированное питание — залог здоровья кошки. Лучше всего подходят качественные корма с высоким содержанием белка.</p>
+    </div>
+
+    <div class="feature">
+        <div class="round">
+            <img src="/Users/mccally/Desktop/lab_1_html/9.jpg" alt="">
+        </div>
+        <h4>Здоровье</h4>
+        <p>Кошкам необходимы регулярные осмотры у ветеринара, профилактические прививки и защита от паразитов.</p>
+    </div>
+
+    <div class="feature">
+        <div class="round">
+            <img src="/Users/mccally/Desktop/lab_1_html/10.jpg" alt="">
+        </div>
+        <h4>Игры и активность</h4>
+        <p>Кошки любят играть: это развивает их интеллект и снижает стресс. Лучшие игрушки — мячики, удочки и интерактивные головоломки.</p>
+    </div>
+
+</section>
+
+<!-- КАРТОЧКИ — верхний ряд -->
+<section class="cards-row clearfix">
+
+    <article class="card">
+        <div class="sq">
+            <img src="/Users/mccally/Desktop/lab_1_html/16.jpg" alt="">
+        </div>
+        <div class="card-text">
+            <h3>Популярные породы</h3>
+            <p>От мейн-кунов до сфинксов — каждая порода отличается уникальным характером и внешностью.</p>
+            <button>Подробнее</button>
+        </div>
+    </article>
+
+    <article class="card">
+        <div class="sq">
+            <img src="17.jpg" alt="">
+        </div>
+        <div class="card-text">
+            <h3>Как выбрать котёнка</h3>
+            <p>При выборе важно учитывать темперамент, условия содержания и состояние здоровья будущего питомца.</p>
+            <button>Подробнее</button>
+        </div>
+    </article>
+
+    <article class="card">
+        <div class="sq">
+            <img src="/Users/mccally/Desktop/lab_1_html/15.jpg" alt="">
+        </div>
+        <div class="card-text">
+            <h3>Советы владельцам</h3>
+            <p>Основы воспитания, правила адаптации и рекомендации для комфортной жизни питомца.</p>
+            <button>Подробнее</button>
+        </div>
+    </article>
+
+</section>
+
+<!-- КАРТОЧКИ — нижний ряд -->
+<section class="cards-row bottom clearfix">
+
+    <article class="card">
+        <div class="card-text center-text">
+            <h3>Интересные факты</h3>
+            <p>Кошки спят до 16 часов в сутки, обладают отличным слухом и могут различать до 100 разных звуков.</p>
+            <button>Подробнее</button>
+        </div>
+    </article>
+
+    <article class="card reverse">
+        <div class="sq">
+            <img src="/Users/mccally/Desktop/lab_1_html/22.jpg" alt="">
+        </div>
+        <div class="card-text center-text">
+            <h3>Развитие котят</h3>
+            <p>Котята активно растут, изучают мир и начинают играть уже на 3–4 недели жизни.</p>
+            <button>Подробнее</button>
+        </div>
+    </article>
+
+    <article class="card">
+        <div class="card-text center-text">
+            <h3>Психология кошек</h3>
+            <p>Кошки имеют сложный эмоциональный мир и выражают чувства через поведение, движения хвоста и звуки.</p>
+            <button>Подробнее</button>
+        </div>
+    </article>
+
+</section>
+
 </body>
 </html>
