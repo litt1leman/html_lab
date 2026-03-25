@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h3>Тон браузеров</h3>
+  <table id="test">
+    <tr>
+        <th>Браузер</th>
+        <th>Доля рынка</th>
+        <th>Версия</th>
+        <th>Год выпуска</th>
+        <th>Браузер</th>
+    </tr>
+    
+    <tr>
+        <td>Google Chrome</td>
+        <td>63.33%</td>
+        <td>120</td>
+        <td>2024</td>
+        <td>2024</td>
+    </tr>
+    <tr>
+        <td>Firefox</td>
+        <td>5.96%</td>
+        <td>115</td>
+        <td>2023</td>
+        <td>2024</td>
+       
+    </tr>
+</table>
+
+    <br>
+    <button onclick="changeTable('test')">Поменять столбцы местами</button>
+
+    <script>
+        function changeTable(tableId) {
+            const table = document.getElementById(tableId);
+            if (!table) return;
+
+            const rows = table.rows;
+
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const cells = row.cells;
+
+                if (cells.length >= 2) {
+                    const firstCellContent = cells[0].innerHTML;
+                    const lastCellContent = cells[cells.length - 1].innerHTML;
+
+                    cells[0].innerHTML = lastCellContent;
+                    cells[cells.length - 1].innerHTML = firstCellContent;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
