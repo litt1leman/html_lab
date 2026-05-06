@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 анимация</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            margin: 20px;
+        }
+
+        svg {
+            background: #f3f3f3;
+            border: 1px solid #999;
+        }
+
+        label {
+            display: inline-block;
+            width: 220px;
+            margin-bottom: 8px;
+        }
+
+        button {
+            padding: 8px 14px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .active {
+            background: #ff4f4f;
+            color: #000000;
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Анимация фигуры по звезде с дугами</h2>
+
+<div>
+    <label>Время (мс):</label>
+    <input id="duration" type="number" value="8000"><br>
+
+    <label>Начальный масштаб:</label>
+    <input id="startScale" type="number" step="0.1" value="1"><br>
+
+    <label>Максимальный масштаб:</label>
+    <input id="peakScale" type="number" step="0.1" value="1.4"><br>
+
+    <label>Конечный масштаб:</label>
+    <input id="endScale" type="number" step="0.1" value="0.8"><br>
+
+    <label>Вращение (обороты):</label>
+    <input id="turns" type="number" step="0.5" value="2"><br><br>
+
+    <button id="circleBtn" class="active" onclick="setShape('circle')">Круг</button>
+    <button id="squareBtn" onclick="setShape('square')">Квадрат</button>
+    <button onclick="startAnimation()">Старт</button>
+    <button onclick="clearSVG()">Очистить</button>
+</div>
+
+<br><br>
+
+<svg id="scene" width="800" height="800"></svg>
+
+<script>
+    const svg = d3.select("#scene");
+
+    let pathNode;
+    let mover;
+    let currentShape = "circle";
+
+    function setShape(shape) {
+        currentShape = shape;
+
+        document.getElementById("circleBtn").classList.remove("active");
+        document.getElementById("squareBtn").classList.remove("active");
+
+        if (shape === "circle") {
+            document.getElementById("circleBtn").classList.add("active");
+        } else {
+            document.getElementById("squareBtn").classList.add("active");
+        }
+
+        init();
+    }
+
+    function buildPath() {
+        return `
+            M 100,700
+            Q 400,400 100,100
+            Q 400,400 700,400
+            Q 400,400 100,700
+
+
+        `;
+    }
+
+    function drawShape(parent, x, y, shape) {
+        const g = parent.append("g")
+            .attr("transform", `translate(${x},${y})`);
+
+        if (shape === "circle") {
+            g.append("circle")
+                .attr("r", 12)
+                .attr("fill", "orange")
+                .attr("stroke", "black");
+        } else if (shape === "square") {
+            g.append("rect")
+                .attr("x", -12)
+                .attr("y", -12)
+                .attr("width", 24)
+                .attr("height", 24)
+                .attr("fill", "limegreen")
+                .attr("stroke", "black");
+        }
+
+        return g;
+    }
+
+    function getPoint(len) {
+        const total = pathNode.getTotalLength();
+        const safe = Math.min(len, total - 1);
+
+        const p = pathNode.getPointAtLength(safe);
+        const p2 = pathNode.getPointAtLength(Math.min(safe + 1, total));
+
+        const angle = Math.atan2(p2.y - p.y, p2.x - p.x) * 180 / Math.PI;
+        return { x: p.x, y: p.y, angle };
+    }
+
+    function getScale(t, s1, s2, s3) {
+        if (t < 0.5) {
+            return s1 + (s2 - s1) * (t * 2);
+        } else {
+            return s2 + (s3 - s2) * ((t - 0.5) * 2);
+        }
+    }
+
+    function init() {
+        svg.selectAll("*").remove();
+
+        const layer = svg.append("g");
+
+        const path = layer.append("path")
+            .attr("d", buildPath())
+            .attr("fill", "none")
+            .attr("stroke", "blue")
+            .attr("stroke-width", 3);
+
+        pathNode = path.node();
+
+        const start = getPoint(0);
+
+        layer.append("circle")
+            .attr("cx", start.x)
+            .attr("cy", start.y)
+            .attr("r", 10)
+            .attr("fill", "brown");
+
+        mover = drawShape(layer, start.x, start.y, currentShape);
+    }
+
+    function startAnimation() {
+        if (!pathNode || !mover) return;
+
+        const duration = +document.getElementById("duration").value;
+        const s1 = +document.getElementById("startScale").value;
+        const s2 = +document.getElementById("peakScale").value;
+        const s3 = +document.getElementById("endScale").value;
+        const turns = +document.getElementById("turns").value;
+
+        const total = pathNode.getTotalLength();
+
+        mover.interrupt();
+
+        mover.transition()
+            .duration(duration)
+            .ease(d3.easeLinear)
+            .attrTween("transform", function () {
+                return function (t) {
+                    const pos = getPoint(t * total);
+                    const scale = getScale(t, s1, s2, s3);
+                    const rotate = pos.angle + turns * 360 * t;
+
+                    return `translate(${pos.x},${pos.y}) rotate(${rotate}) scale(${scale})`;
+                };
+            });
+    }
+
+    function clearSVG() {
+        if (mover) mover.interrupt();
+        init();
+    }
+
+    init();
+</script>
+
+</body>
+</html>
