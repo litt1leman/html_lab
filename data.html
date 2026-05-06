@@ -1,134 +1,77 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Статистика</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Статистика пород котиков — сортировка и фильтрация</title>
+  <link rel="stylesheet" href="style5.css">
 </head>
 <body>
-    
-    <div>
-        <h1>Мир котиков</h1>
-        <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="cat-details.html">О породах</a></li>
-            <li><a href="data.html">Статистика</a></li>
-        </ul>
+<div class="container">
+  <h1>Мир котиков</h1>
+  <ul class="nav">
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="cat-details.html">О породах</a></li>
+    <li><a href="data.html">Статистика</a></li>
+  </ul>
+</div>
+
+<div class="filter-section">
+  <h3>Фильтрация таблицы</h3>
+  <div class="filter-controls">
+    <div class="filter-group">
+      <label>Вес (кг):</label><br>
+      <input type="number" id="minWeight" value="1" min="1" max="10" step="0.5" class="filter-input"> 
+      - 
+      <input type="number" id="maxWeight" value="10" min="1" max="10" step="0.5" class="filter-input">
     </div>
-
-    <div>
-        <form>
-            <fieldset>
-                <legend>Настройки графика</legend>
-                <select>
-                    <option>Столбчатая диаграмма</option>
-                    <option>Линейный график</option>
-                    <option>Круговая диаграмма</option>
-                </select>
-                <input type="checkbox"> Популярность
-                <input type="checkbox"> Вес
-                <input type="checkbox"> Возраст
-                <input type="submit" value="Применить">
-            </fieldset>
-        </form>
-
-        <form>
-            <fieldset>
-                <legend>Сортировка</legend>
-                <select>
-                    <option>По популярности</option>
-                    <option>По весу</option>
-                    <option>По возрасту</option>
-                </select>
-                <input type="radio" name="order" checked> По возрастанию
-                <input type="radio" name="order"> По убыванию
-                <input type="submit" value="Сортировать">
-            </fieldset>
-        </form>
-
-        <form>
-            <fieldset>
-                <legend>Фильтры</legend>
-                <input type="number" value="1" min="1" max="10"> Мин. вес (кг)
-                <input type="number" value="10" min="1" max="10"> Макс. вес (кг)
-                <select>
-                    <option>Любая активность</option>
-                    <option>Низкая</option>
-                    <option>Средняя</option>
-                    <option>Высокая</option>
-                </select>
-                <input type="submit" value="Фильтровать">
-            </fieldset>
-        </form>
+    <div class="filter-group"></div>
+  <label>Поиск по породе:</label><br>
+  <input type="text" id="searchText" placeholder="Введите название породы..." style="padding:6px;width:200px;">
+</div>
+    <div class="filter-group filter-buttons">
+      <button id="applyFilterBtn" class="btn btn-primary">Применить фильтры</button>
+      <button id="resetFilterBtn" class="btn btn-secondary">Сбросить фильтры</button>
     </div>
-    
-    <div>
-        <h2>Статистика пород</h2>
-        <table border="1" cellpadding="5" cellspacing="0">
-            <tr>
-                <th>№</th>
-                <th>Порода</th>
-                <th>Популярность</th>
-                <th>Вес (кг)</th>
-                <th>Возраст (лет)</th>
-            </tr>
-            <tr><td>1</td><td>Мейн-кун</td><td>1</td><td>8</td><td>12-15</td></tr>
-            <tr><td>2</td><td>Британская короткошерстная</td><td>2</td><td>5</td><td>12-17</td></tr>
-            <tr><td>3</td><td>Сфинкс</td><td>3</td><td>4</td><td>8-14</td></tr>
-            <tr><td>4</td><td>Сиамская</td><td>4</td><td>4</td><td>15-20</td></tr>
-            <tr><td>5</td><td>Персидская</td><td>5</td><td>5</td><td>12-17</td></tr>
-            <tr><td>6</td><td>Русская голубая</td><td>6</td><td>4</td><td>15-20</td></tr>
-            <tr><td>7</td><td>Бенгальская</td><td>7</td><td>5</td><td>12-16</td></tr>
-            <tr><td>8</td><td>Норвежская лесная</td><td>8</td><td>6</td><td>14-16</td></tr>
-            <tr><td>9</td><td>Шотландская вислоухая</td><td>9</td><td>4</td><td>11-14</td></tr>
-            <tr><td>10</td><td>Абиссинская</td><td>10</td><td>4</td><td>9-15</td></tr>
-            <tr><td>11</td><td>Рэгдолл</td><td>11</td><td>7</td><td>12-15</td></tr>
-            <tr><td>12</td><td>Ориентальная</td><td>12</td><td>5</td><td>12-15</td></tr>
-            <tr><td>13</td><td>Бурманская</td><td>13</td><td>5</td><td>10-16</td></tr>
-            <tr><td>14</td><td>Турецкая ангора</td><td>14</td><td>4</td><td>12-18</td></tr>
-            <tr><td>15</td><td>Сибирская</td><td>15</td><td>6</td><td>11-18</td></tr>
-            <tr><td>16</td><td>Бомбейская</td><td>16</td><td>4</td><td>12-16</td></tr>
-            <tr><td>17</td><td>Тонкинская</td><td>17</td><td>4</td><td>10-16</td></tr>
-            <tr><td>18</td><td>Египетская мау</td><td>18</td><td>4</td><td>13-16</td></tr>
-            <tr><td>19</td><td>Гавана браун</td><td>19</td><td>4</td><td>12-15</td></tr>
-            <tr><td>20</td><td>Корниш-рекс</td><td>20</td><td>3</td><td>11-15</td></tr>
-            <tr><td>21</td><td>Девон-рекс</td><td>21</td><td>3</td><td>9-15</td></tr>
-            <tr><td>22</td><td>Японский бобтейл</td><td>22</td><td>3</td><td>9-15</td></tr>
-            <tr><td>23</td><td>Американский керл</td><td>23</td><td>4</td><td>9-13</td></tr>
-            <tr><td>24</td><td>Селкирк-рекс</td><td>24</td><td>5</td><td>10-15</td></tr>
-            <tr><td>25</td><td>Лаперм</td><td>25</td><td>4</td><td>10-15</td></tr>
-            <tr><td>26</td><td>Мэнкс</td><td>26</td><td>4</td><td>8-14</td></tr>
-            <tr><td>27</td><td>Пиксибоб</td><td>27</td><td>6</td><td>13-15</td></tr>
-            <tr><td>28</td><td>Саванна</td><td>28</td><td>7</td><td>12-20</td></tr>
-            <tr><td>29</td><td>Чаузи</td><td>29</td><td>7</td><td>12-14</td></tr>
-            <tr><td>30</td><td>Оцикет</td><td>30</td><td>5</td><td>10-15</td></tr>
-            <tr><td>31</td><td>Сомалийская</td><td>31</td><td>4</td><td>12-16</td></tr>
-            <tr><td>32</td><td>Турецкий ван</td><td>32</td><td>6</td><td>12-17</td></tr>
-            <tr><td>33</td><td>Американская короткошерстная</td><td>33</td><td>5</td><td>15-20</td></tr>
-            <tr><td>34</td><td>Экзотическая короткошерстная</td><td>34</td><td>5</td><td>12-15</td></tr>
-            <tr><td>35</td><td>Бирманская</td><td>35</td><td>5</td><td>12-16</td></tr>
-            <tr><td>36</td><td>Нибелунг</td><td>36</td><td>4</td><td>15-18</td></tr>
-            <tr><td>37</td><td>Рагамаффин</td><td>37</td><td>7</td><td>12-16</td></tr>
-            <tr><td>38</td><td>Сноу-шу</td><td>38</td><td>5</td><td>14-20</td></tr>
-            <tr><td>39</td><td>Австралийский мист</td><td>39</td><td>4</td><td>12-16</td></tr>
-            <tr><td>40</td><td>Кимрик</td><td>40</td><td>4</td><td>8-14</td></tr>
-            <tr><td>41</td><td>Невская маскарадная</td><td>41</td><td>6</td><td>12-17</td></tr>
-            <tr><td>42</td><td>Европейская короткошерстная</td><td>42</td><td>5</td><td>14-20</td></tr>
-            <tr><td>43</td><td>Калифорнийская сияющая</td><td>43</td><td>5</td><td>9-16</td></tr>
-            <tr><td>44</td><td>Бурмилла</td><td>44</td><td>4</td><td>10-15</td></tr>
-            <tr><td>45</td><td>Гималайская</td><td>45</td><td>5</td><td>9-15</td></tr>
-            <tr><td>46</td><td>Корат</td><td>46</td><td>4</td><td>10-15</td></tr>
-            <tr><td>47</td><td>Манчкин</td><td>47</td><td>3</td><td>12-15</td></tr>
-            <tr><td>48</td><td>Петерболд</td><td>48</td><td>4</td><td>12-15</td></tr>
-            <tr><td>49</td><td>Тойгер</td><td>49</td><td>5</td><td>10-15</td></tr>
-            <tr><td>50</td><td>Украинский левкой</td><td>50</td><td>4</td><td>12-15</td></tr>
-        </table>
-    </div>
+  </div>
+</div>
 
-    
+<!-- Блок сортировки -->
+<div class="sort-section">
+  <h3>Сортировка таблицы</h3>
+  <div id="sortLevelsContainer">
+    <!-- Уровни сортировки будут добавлены через JS -->
+  </div>
+  <div class="sort-actions">
+    <button id="applySortBtn" class="btn btn-success">Применить сортировку</button>
+    <button id="resetSortBtn" class="btn btn-danger">Сбросить сортировку</button>
+  </div>
+</div>
 
-  
-    <div>
-        <p>Группа: Б9123-02.03.03тп | Косенко Е.О.</p>
-    </div>
+<!-- Таблица -->
+<div class="table-section">
+  <h2>Статистика пород</h2>
+  <div id="recordsCount" class="records-count">Показано записей: 50 из 50</div>
+  <table class="cat-table" id="catTable">
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Порода</th>
+        <th>Популярность</th>
+        <th>Вес (кг)</th>
+        <th>Возраст (лет)</th>
+        <th>Активность</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+    </tbody>
+  </table>
+</div>
+
+<div class="footer">
+  <p>Группа: Б9123-02.03.03тп | Косенко Е.О.</p>
+</div>
+
+<script src="script5.js"></script>
 </body>
 </html>
